@@ -1,24 +1,26 @@
-[{
-	"name": "Diego Torres",
-	"timestamp": "1423349834",
-	"phone": "(203) 606-8129",
-	"lat": "41.31",
-	"long": "-72.923611",
-	"report": "Panic button press",
+{
+	"name": {
+			"first": "Diego",
+			"last": "Torres"
+	},									*
+	"timestamp": "1423350805",			*
+	"phone": "2036068129",				*
+	"report": "Panic button press",		*
+	"lat": "41.31",						
+	"long": "-72.923611",				
 	"emergency contact": {
 		"name": "Agustin Torres",
-		"phone": "(260) 639-4262"
+		"phone": "2606394262"
 	},
-	"address_1": "74 High St",
-	"address_2": "",
-	"address_Zip": 06520,
-	"address_City": "New Haven",
-	"address_State": "Connecticut",
-	"address_Country": "United States"
-},
-{
-},
-{
-},
-{
-}]
+	"age": 20,
+	"address": {
+		"street_1": "74 High St",
+		"street_2": "",
+		"zip": "06520",
+		"city": "New Haven",
+		"state": "Connecticut",
+		"country": "United States"
+	}
+}
+
+* mandatory
