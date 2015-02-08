@@ -34,7 +34,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem "devise"
 gem "annotate"
-gem 'bootstrap-sass', '~> 3.3.3'
+gem "bootstrap-sass", "~> 3.3.3"
+gem "annotate"
+gem 'kaminari'
+gem 'versionist'
+gem "active_model_serializers", "~> 0.8.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
