@@ -1,0 +1,26 @@
+{
+	"name": {
+			"first": "Diego",
+			"last": "Torres"
+	},									*
+	"timestamp": "1423350805",			*
+	"phone": "2036068129",				*
+	"report": "Panic button press",		*
+	"lat": "41.31",						
+	"long": "-72.923611",				
+	"emergency contact": {
+		"name": "Agustin Torres",
+		"phone": "2606394262"
+	},
+	"age": 20,
+	"address": {
+		"street_1": "74 High St",
+		"street_2": "",
+		"zip": "06520",
+		"city": "New Haven",
+		"state": "Connecticut",
+		"country": "United States"
+	}
+}
+
+* mandatory
