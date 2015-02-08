@@ -35,6 +35,9 @@
                     <%=link_to "Search", search_path,:class => "btn btn-default", :method => :get %>
                 </li>
                 <li>
+                    <%=link_to "Crime Map", map_path,:class => "btn btn-default", :method => :get %>
+                </li>
+                <li>
                     <%=link_to "Charts", charts_path,:class => "btn btn-default", :method => :get %>
                 </li>
                 </li>
@@ -46,7 +49,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <p>Charts</p>
+							<p>Charts</p>
+							<div id="bar"></div>
                     </div>
                 </div>
             </div>
@@ -63,29 +67,82 @@
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
         console.log("hello");
-    });
+	});
 
-    var mostRecentTime=0;
-    var shownIds=[];
-    setInterval(function(){
-       $.ajax({
-          url: './api/hits',
-          headers: {
-            'Accept': 'application/vnd.copapi.com+json; version=1',
-          },
-          dataType: 'json',
-          success: function(data){
-             data = $.grep(data, function(el){
-                if (!($.inArray(el.id, shownIds)))
-                    return true;
-                else
-                    return false;
-             });
-             mostRecentTime = $(data).first().timestamp;
-             drawer(data);
-          }
-        }); 
-    },2000);
+	var options = {
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Crimes by type'
+        },
+        xAxis: {
+			possReps: ["Murder", "Rape", "Theft", "Robbery", "Mugging", "Car theft"]
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Occurrences',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' millions'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 100,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            data: [973, 914, 4054, 732, 34]
+        }]
+    }
+
+	$.ajax({
+		url: './api/hits',
+    	headers: {
+    		'Accept': 'application/vnd.copapi.com+json; version=1',
+    	},
+    	dataType: 'json',
+    	success: function(data){
+    		var datarr = data.hits;
+			$(datarr).each(function(){
+				var item = $(this)[0];
+				if (item == 'Murder')
+						options.series[0].data[0]++;
+				if (item == 'Rape')
+						options.series[0].data[1]++;
+				if (item == 'Theft')
+						options.series[0].data[2]++;
+				if (item == 'Robbery')
+						options.series[0].data[3]++;
+				if (item == 'Mugging')
+						options.series[0].data[4]++;
+				if (item == 'Car theft')
+						options.series[0].data[5]++;
+			});
+		}
+	}); 
     // Receives array of JSON reports
     function drawer(data){
         data.each(function(){
