@@ -9,7 +9,7 @@
 require 'json'
 file = File.read("./data.json")
 reports = JSON.parse(file)
-possReps = ["Murder", "Rape", "Theft", "Robbery", "Mugging", "Car theft", "Panic button"]
+possReps = ["Murder", "Rape", "Theft", "Robbery", "Mugging", "Car theft", "Panic button", "Candy Theft", "They said I was ugly", "They made fun of my math skills"]
 reports.each do |report|
   #randRep = "dasdas"
   randRep = possReps[rand(possReps.length)]
