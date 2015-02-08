@@ -17,3 +17,4 @@
 
 require = "bootsrap.js"
 require = "jquery.js"
+require = "search-script.js"
