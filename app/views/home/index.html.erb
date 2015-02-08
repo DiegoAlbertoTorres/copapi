@@ -47,6 +47,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <a href="#menu-toggle" class="btn btn-search" id="menu-toggle">Toggle Menu</a>
+                        <div id="feed"></div>
                     </div>
                 </div>
             </div>
@@ -62,7 +63,6 @@
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
-        console.log("hello");
     });
 
     var mostRecentTime=0;
@@ -75,25 +75,38 @@
           },
           dataType: 'json',
           success: function(data){
-             data = $.grep(data, function(el){
-                if (!($.inArray(el.id, shownIds)))
-                    return true;
-                else
+            var datarr = data.hits;
+            datarr = $.grep(datarr, function(n, i){
+                // console.log(n.id, shownIds, $.inArray(n.id, shownIds));
+                if (($.inArray(n.id, shownIds)) >= 0){
                     return false;
-             });
-             mostRecentTime = $(data).first().timestamp;
-             drawer(data);
+                }
+                else{
+                    // console.log("hey")
+                    shownIds.push(n.id);
+                    return true;
+                }
+            });
+            mostRecentTime = $(datarr).first().timestamp;
+            drawer(datarr);
           }
         }); 
     },2000);
     // Receives array of JSON reports
     function drawer(data){
-        data.each(function(){
+
+        $(data).each(function(){
+            var item = $(this)[0];
+            // console.log(item);
             var html ='<div style="border: 5px solid black" class="container">';
-            html += '<p>Report:'+$(this).report+'</p>';
-            html +='<p>Contact Phone:'+$(this).phone+'</p>';
-            html +='<p>Name:'+$(this).name+'</p>';
-            html +='<%=link_to "Map", map_path,:class => "btn btn-default", :method => :get %></div>';
+            html += '<p>Report: '+ item.report+'</p>';
+            html +='<p>Phone: '+ item.phone+'</p>';
+            html +='<p>Name: '+ item.firstname + ' ' + item.lastname + '</p>';
+            var link = '<a href="http://maps.google.com?q=' + item.lat + ',' + item.long + '\">Location</a>'; 
+            html += link;
+            console.log(html);
+            // html +='<%=link_to "Map", map_path,:class => "btn btn-default", :method => :get %></div>';
+            $("#feed").prepend(html);
         });
     }
 
