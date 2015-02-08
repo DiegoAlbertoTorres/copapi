@@ -6,9 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+require 'json'
 file = File.read("./data.json")
 reports = JSON.parse(file)
 reports.each do |report|
-	hit.from_json(report);
-	puts hit
+	puts report['name']
+	hit = Hit.create(name: report['name']);
+	#hit = Hit.new();
+	#hit.from_json(report);
+	#puts hit
 end
