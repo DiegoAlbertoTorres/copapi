@@ -15,7 +15,7 @@
 #  last_sign_in_ip                   :string
 #  created_at                        :datetime
 #  updated_at                        :datetime
-#  type                              :string           default("citizen")
+#  user_type                         :string           default("citizen")
 #  name                              :string
 #  phone                             :string
 #  birthdate                         :date

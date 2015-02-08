@@ -15,7 +15,7 @@
 #  last_sign_in_ip                   :string
 #  created_at                        :datetime
 #  updated_at                        :datetime
-#  type                              :string           default("citizen")
+#  user_type                         :string           default("citizen")
 #  name                              :string
 #  phone                             :string
 #  birthdate                         :date
@@ -32,7 +32,7 @@
 #  warranty_number                   :string
 #
 
-# type can be:
+# user_type can be:
 #    - admin
 #    - citizen
 #    - policeman
@@ -43,19 +43,19 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :name, :type, :birthdate, :gender, :address_1, :address_zip_code, :address_state, :address_country, :emergency_contact_name, :emergency_contact_phone, :emergency_contact_relation, presence: true
+  validates :name, :user_type, :birthdate, :gender, :address_1, :address_zip_code, :address_state, :address_country, :emergency_contact_name, :emergency_contact_phone, :emergency_contact_relation, presence: true
 
   has_many :hits
 
   def admin?
-    self.type == "admin"
+    self.user_type == "admin"
   end
 
   def citizen?
-    self.type == "citizen"
+    self.user_type == "citizen"
   end
 
   def policeman?
-    self.type == "policeman"
+    self.user_type == "policeman"
   end
 end

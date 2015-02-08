@@ -2,41 +2,41 @@ class HitSerializer < ActiveModel::Serializer
   attributes :name, :timestamp, :phone, :lat, :long, :report, :emergency_contact, :address
 
   def name
-    self.user.name
+    object.user.name
   end
 
   def timestamp
-    self.created_at
+    object.created_at
   end
 
   def phone
-    self.user.phone
+    object.user.phone
   end
 
   def lat
-    self.latitude
+    object.latitude
   end
 
   def long
-    self.longitude
+    object.longitud
   end
 
   def emergency_contact
     {
-      name: self.user.emergency_contact_name,
-      phone: self.user.emergency_contact_phone,
-      aleternate_phone: self.user.emergency_contact_alternate_phone,
-      relation: self.user.emergency_contact_relation
+      name: object.user.emergency_contact_name,
+      phone: object.user.emergency_contact_phone,
+      aleternate_phone: object.user.emergency_contact_alternate_phone,
+      relation: object.user.emergency_contact_relation
     }
   end
 
   def address
     {
-      line_1: self.user.address_1,
-      line_2: self.user.address_2,
-      zip_code: self.user.address_zip_code,
-      state: self.user.address_state,
-      country:self.user.address_country
+      line_1: object.user.address_1,
+      line_2: object.user.address_2,
+      zip_code: object.user.address_zip_code,
+      state: object.user.address_state,
+      country:object.user.address_country
     }
   end
 end

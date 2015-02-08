@@ -1,6 +1,6 @@
 class AddAttributesToUsers < ActiveRecord::Migration
   def change
-    add_column :users, :type, :string, default: "citizen"
+    add_column :users, :user_type, :string, default: "citizen"
     add_column :users, :name, :string
     add_column :users, :phone, :string
     add_column :users, :birthdate, :date

@@ -13,5 +13,5 @@
 
 class Hit < ActiveRecord::Base
   belongs_to :user
-  validates :longitud, :latitud, :report, presence: true
+  validates :longitud, :latitude, :report, presence: true
 end
