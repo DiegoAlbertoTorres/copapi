@@ -1,0 +1,32 @@
+[
+	'{{repeat(100, 100)}}',
+	{
+      name: {
+		first: '{{firstName()}}',
+		last: '{{surname()}}'
+      },
+      timestamp: '{{integer(14000000000, 14100000000)}}',
+      phone: '+1 {{phone()}}',
+      report: '',
+	  lat: '{{floating(41.829282, 41.830177)}}',
+	  long: '{{floating(-71.403955, -71.394771)}}',
+      emergencyContact: {
+        name: {
+          first: '{{firstName()}}',
+          last: '{{surname()}}'
+        },
+        phone: '+1 {{phone()}}',
+        email: function (tags) {
+              return (this.name.first + '.' + this.name.last + '@' + this.company + tags.domainZone()).toLowerCase();
+        }
+      },
+      age: '{{integer(20, 40)}}',
+      address: {
+      	street: '{{street()}}',
+        city: '{{city()}}',
+        state: '{{state()}}',
+        zip: '{{integer(10000, 10000)}}'
+        
+      }
+    }
+]
