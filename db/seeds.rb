@@ -9,9 +9,12 @@
 require 'json'
 file = File.read("./data.json")
 reports = JSON.parse(file)
+possReps = ["Murder", "Rape", "Theft", "Robbery", "Mugging", "Car theft", "Panic button"]
 reports.each do |report|
+  #randRep = "dasdas"
+  randRep = possReps[rand(possReps.length)]
   Hit.create(name: report["name"]["first"], last: report["name"]["last"],
-             phone: report["phone"], report: report["report"],
+             phone: report["phone"], report: randRep,
              latitude: report["lat"], longitud: report["long"],
              contact_name: report["emergencyContact"]["name"]["first"],
              contact_last: report["emergencyContact"]["name"]["last"],
