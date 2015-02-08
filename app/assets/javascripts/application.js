@@ -17,4 +17,3 @@
 
 require = "bootsrap.js"
 require = "jquery.js"
-    
