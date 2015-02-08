@@ -1,1 +1,1 @@
-Hit.create(name: "Diego", last: "Torres", phone: "2036068129", report: "Panic Button", latitude: "25.666667", longitud: "-100.3")
+Hit.create(name: "Fernando", last: "Montero", phone: "2036068129", report: "Panic Button", latitude: "25.666667", longitud: "-100.3")
