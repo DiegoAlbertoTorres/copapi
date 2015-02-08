@@ -48,9 +48,8 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div id="feed"></div>
-                    </div>
+					<h1 id="feed-header">Report Feed</h1>	
+					<div id="feed"></div>
                 </div>
             </div>
         </div>
@@ -79,7 +78,7 @@
           success: function(data){
             var datarr = data.hits;
             datarr = $.grep(datarr, function(n, i){
-                // console.log(n.id, shownIds, $.inArray(n.id, shownIds));
+                console.log(n.firstname);
                 if (($.inArray(n.id, shownIds)) >= 0){
                     return false;
                 }
@@ -100,13 +99,12 @@
         $(data).each(function(){
             var item = $(this)[0];
             // console.log(item);
-            var html ='<div id="report" style="border: 5px solid black" class="container">';
-            html += '<p>Report: '+ item.report+'</p>';
-            html +='<p>Phone: '+ item.phone+'</p>';
-            html +='<p>Name: '+ item.firstname + ' ' + item.lastname + '</p>';
+            var html ='<div class="report" class="container">';
+			html += '<p><b>Report:</b> '+ item.report+'</p>';
+			html +='<p><b>Phone:</b> '+ item.phone+'</p>';
+			html +='<p><b>Name:</b> '+ item.firstname + ' ' + item.lastname + '</p>';
             var link = '<a href="http://maps.google.com?q=' + item.lat + ',' + item.long + '\">Location</a>'; 
             html += link;
-            console.log(html);
             // html +='<%=link_to "Map", map_path,:class => "btn btn-default", :method => :get %></div>';
             $("#feed").prepend(html).hide().fadeIn();
         });
