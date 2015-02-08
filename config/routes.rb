@@ -5,6 +5,10 @@ Rails.application.routes.draw do
       resources :hits, only: [:index, :show, :create]
     end
   end
-
+  get 'map', to:'map#map'
+  get 'charts', to:'charts#chart'
+  get 'index',to:'home#index'
+  get 'search', to:'search#search'
+  root :to => 'home#index'
   devise_for :users
 end
