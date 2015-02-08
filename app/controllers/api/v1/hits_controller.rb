@@ -4,6 +4,7 @@ class Api::V1::HitsController < API::V1::BaseController
   end
 
   def show
+    
       if params[:minTime]
 		hits = hits.where("created_at > ?", params[:minTime].to_datetime)
 		if params[:maxTime]
@@ -20,9 +21,11 @@ class Api::V1::HitsController < API::V1::BaseController
 		hits = hits.where("report LIKE ?", params[:report])
 	  end
 	  render json: hits, serializer: HitSerializer, status: 200
+
   end
 
   def create
+  
     hit = Hit.new(hit_params)
 
     if hit.save
