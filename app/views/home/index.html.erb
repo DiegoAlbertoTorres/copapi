@@ -99,9 +99,9 @@
             var item = $(this)[0];
             // console.log(item);
             var html ='<div style="border: 5px solid black" class="container">';
-            html += '<p>Report:'+ item.report+'</p>';
-            html +='<p>Phone:'+ item.phone+'</p>';
-            // html +='<p>Name:'+ item.name+'</p>';
+            html += '<p>Report: '+ item.report+'</p>';
+            html +='<p>Phone: '+ item.phone+'</p>';
+            html +='<p>Name: '+ item.firstname + ' ' + item.lastname + '</p>';
             var link = '<a href="http://maps.google.com?q=' + item.lat + ',' + item.long + '\">Location</a>'; 
             html += link;
             console.log(html);
