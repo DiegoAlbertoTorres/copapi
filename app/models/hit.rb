@@ -12,17 +12,7 @@
 #
 
 class Hit < ActiveRecord::Base
-  include ActiveModel::Serializers::JSON
   belongs_to :user
-  validates :longitud, :latitude, :report, presence: true
-  
+  validates :phone, :longitud, :latitude, :report, presence: true
 
-  def attributes=(hash)
-  	hash.each do |key, value|
-	  send("#{key}=",value)
-	end
-  end
-  def attributes
-    instance_values
-  end
 end

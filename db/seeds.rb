@@ -10,9 +10,13 @@ require 'json'
 file = File.read("./data.json")
 reports = JSON.parse(file)
 reports.each do |report|
-	puts report['name']
-	hit = Hit.create(name: report['name']);
-	#hit = Hit.new();
-	#hit.from_json(report);
-	#puts hit
+  Hit.create(name: report["name"]["first"], last: report["name"]["last"],
+             phone: report["phone"], report: report["report"],
+             latitude: report["lat"], longitud: report["long"],
+             contact_name: report["emergencyContact"]["name"]["first"],
+             contact_last: report["emergencyContact"]["name"]["last"],
+             contact_phone: report["emergencyContact"]["phone"],
+             contact_email: report["emergencyContact"]["phone"],
+             age: report["age"])
+
 end

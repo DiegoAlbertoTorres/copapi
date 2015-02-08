@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :name, :user_type, :birthdate, :gender, :address_1, :address_zip_code, :address_state, :address_country, :emergency_contact_name, :emergency_contact_phone, :emergency_contact_relation, presence: true
+  validates :name, :user_type, :gender, :emergency_contact_name, :emergency_contact_phone, :emergency_contact_relation, presence: true
 
   has_many :hits
 

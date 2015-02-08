@@ -17,6 +17,7 @@
 #  updated_at                        :datetime
 #  user_type                         :string           default("citizen")
 #  name                              :string
+#  lastname                          :string
 #  phone                             :string
 #  birthdate                         :date
 #  gender                            :string
