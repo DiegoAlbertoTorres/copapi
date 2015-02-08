@@ -1,5 +1,5 @@
 class HitSerializer < ActiveModel::Serializer
-  attributes :timestamp, :lat, :long, :report,
+  attributes :timestamp, :lat, :long, :report, :id
   #def name
    # object.user.name
   #end
@@ -8,9 +8,13 @@ class HitSerializer < ActiveModel::Serializer
     object.created_at
   end
 
-  #def phone
-   # object.user.phone
-  #end
+  def id
+    object.id
+  end
+
+  def phone
+   object.phone
+  end
 
   def lat
     object.latitude
