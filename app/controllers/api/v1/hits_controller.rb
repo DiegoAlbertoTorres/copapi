@@ -4,12 +4,22 @@ class Api::V1::HitsController < API::V1::BaseController
   end
 
   def show
-    hit = Hit.find(params[:id])
-    if (hit)
-      render json: hit, serializer: HitSerializer, status: 200
-    else
-      head 404
-    end
+      if params[:minTime]
+		hits = hits.where("created_at > ?", params[:minTime].to_datetime)
+		if params[:maxTime]
+			hits = hits.where("created_at < ?", params[:maxTime].to_datetime)
+		end
+	  end
+	  if params[:minLat] and params[:maxlat]
+		hits = hits.where("latitude > ? AND latitude < ?", params[:minLat], params[:maxLat])
+	  end
+	  if params[:minLong] and params[:maxLong]
+	  	hits = hits.where("longitud > ? AND longitud < ?", params[:minLong], params[:maxLong])
+	  end
+	  if params[:report]
+		hits = hits.where("report LIKE ?", params[:report])
+	  end
+	  render json: hits, serializer: HitSerializer, status: 200
   end
 
   def create
@@ -25,6 +35,6 @@ class Api::V1::HitsController < API::V1::BaseController
   private
 
   def hit_params
-    params.require(:hit).permit(:latitude, :longitud, :report, :user_id)
+    params.require(:hit).permit(:minLat, :maxLat, :minLong, :maxLong, :report, :minTime, :maxTime, :user_id)
   end
 end
