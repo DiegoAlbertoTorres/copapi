@@ -10,7 +10,7 @@ class Api::V1::HitsController < API::V1::BaseController
 			hits = hits.where("created_at < ?", params[:maxTime].to_datetime)
 		end
 	  end
-	  if params[:minLat] and params[:maxlat]
+	  if params[:minLat] and params[:maxLat]
 		hits = hits.where("latitude > ? AND latitude < ?", params[:minLat], params[:maxLat])
 	  end
 	  if params[:minLong] and params[:maxLong]
